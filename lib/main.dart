@@ -6,9 +6,12 @@ import 'package:my_notes/views/notes/create_update_note_view.dart';
 import 'package:my_notes/views/notes/notes_view.dart';
 import 'package:my_notes/views/register_view.dart';
 import 'package:my_notes/views/verify_email_view.dart';
+import 'dart:developer' as devtool show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  devtool.log("MAIN METHOD IS CALLED");
   runApp(
     MaterialApp(
       title: 'Flutter Demo',

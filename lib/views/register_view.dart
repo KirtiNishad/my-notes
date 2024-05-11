@@ -3,6 +3,7 @@ import 'package:my_notes/constants/routes.dart';
 import 'package:my_notes/services/auth/auth_exceptions.dart';
 import 'package:my_notes/services/auth/auth_service.dart';
 import 'package:my_notes/utilities/dialogs/error_dialog.dart';
+import 'dart:developer' as devtool show log;
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -31,6 +32,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
+    devtool.log("login page is called");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
