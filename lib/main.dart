@@ -31,7 +31,7 @@ void main() {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,3 +57,60 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
+
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
+
+// @immutable
+// abstract class CounterState {
+//   final int value;
+
+//   const CounterState(this.value);
+// }
+
+// class CounterStateValid extends CounterState {
+//   const CounterStateValid(int value) : super(value);
+// }
+
+// class CounterStateInvalidNumber extends CounterState {
+//   final String invalidNumber;
+
+//   CounterStateInvalidNumber(
+//       {required this.invalidNumber, required int previousValue})
+//       : super(previousValue);
+// }
+
+// abstract class CounterEvent {
+//   final String value;
+
+//   const CounterEvent(this.value);
+// }
+
+// class IncrementEvent extends CounterEvent {
+//   const IncrementEvent(String value) : super(value);
+// }
+
+// class DecrementEvent extends CounterEvent {
+//   const DecrementEvent(String value) : super(value);
+// }

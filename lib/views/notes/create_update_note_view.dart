@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_notes/constants/colors.dart';
 import 'package:my_notes/services/auth/auth_service.dart';
 import 'package:my_notes/services/cloud/cloud_note.dart';
 import 'package:my_notes/services/cloud/firebase_cloud_storage.dart';
@@ -12,11 +13,10 @@ class CreateUpdateNoteView extends StatefulWidget {
   const CreateUpdateNoteView({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CreateUpdateNoteViewState createState() => _CreateUpdateNoteViewState();
+  CreateUpdateNoteViewState createState() => CreateUpdateNoteViewState();
 }
 
-class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
+class CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   CloudNote? _note;
   late final FirebaseCloudStorage _notesService;
   late final TextEditingController _textController;
@@ -93,7 +93,15 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Note'),
+        title: const Text(
+          'New Note',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        foregroundColor: AppColors.textColor,
+        backgroundColor: AppColors.appbarColor,
         actions: [
           IconButton(
             onPressed: () async {
@@ -109,29 +117,34 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: createOrGetExistingNote(context),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              // _note = snapshot.data as DatabaseNote;
-              _setupTextControllerListener();
-              devtool.log("new notes is called");
-              return TextField(
-                controller: _textController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: 'Start typing your note...',
-                ),
-              );
-            default:
-              devtool
-                  .log("new notes is called...with circularprogress Indecator");
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: FutureBuilder(
+          future: createOrGetExistingNote(context),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.done:
+                // _note = snapshot.data as DatabaseNote;
+                _setupTextControllerListener();
+                devtool.log("new notes is called");
+                return TextField(
+                  controller: _textController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                    hintText: 'Start typing your note...',
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(119, 154, 91, 69)),
+                  ),
+                );
+              default:
+                devtool.log(
+                    "new notes is called...with circularprogress Indecator");
 
-              return const CircularProgressIndicator();
-          }
-        },
+                return const CircularProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }
